@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class MenuFrame extends JFrame {
+public class ExerciseFrame extends JFrame {
 
 	private JPanel contentPane;
 
@@ -18,7 +18,7 @@ public class MenuFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuFrame frame = new MenuFrame();
+					ExerciseFrame frame = new ExerciseFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class MenuFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuFrame() {
+	public ExerciseFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

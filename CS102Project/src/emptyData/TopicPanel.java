@@ -1,8 +1,8 @@
 package emptyData;
 
-import javax.swing.Icon;
-import javax.swing.JPanel;
+import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class TopicPanel extends JPanel {
 
 	/**
