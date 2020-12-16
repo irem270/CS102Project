@@ -1,5 +1,6 @@
 package emptyData;
 
+import java.awt.CardLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,9 +11,12 @@ import javax.swing.GroupLayout.Alignment;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import info.Update;
+
 import com.jgoodies.forms.layout.FormSpecs;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel extends JPanel implements ActionListener {
 	Style style;
 	JButton topics;
 
@@ -32,20 +36,18 @@ public class MenuPanel extends JPanel {
 	}
 	
 	public void initialize() {
-		JFrame f =   (JFrame) SwingUtilities.getRoot(this);
 
-		topics.addActionListener(new ActionListener() {
+		topics.addActionListener(this);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+	}
 
-				new StudentTopicsFrame(style).setVisible(true);
-				
-				f.dispose();;
-			}
-		});
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		JPanel cardLayoutPanel = (JPanel)getParent();
+		CardLayout layout = (CardLayout)cardLayoutPanel.getLayout();
+		layout.show(cardLayoutPanel, "topicPanel");
 	}
 
 }

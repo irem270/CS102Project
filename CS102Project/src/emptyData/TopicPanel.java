@@ -4,18 +4,19 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.JTextField;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import java.awt.Color;
 
 public class TopicPanel extends JPanel {
 	private JTextField textField;
 	private Style style;
 	private String name;
-	JButton Slides;
-	JFrame f;
+	JButton Slides, exercise;
 
 	/**
 	 * Create the panel.
@@ -28,9 +29,10 @@ public class TopicPanel extends JPanel {
 		setBackground(style.getBckColor().brighter());
 
 		textField = new JTextField();
-		textField.setBounds(178, 37, 110, 36);
+		textField.setBackground(new Color(51, 153, 0));
+		textField.setBounds(120, 37, 229, 36);
 		add(textField);
-		textField.setColumns(10);
+		textField.setColumns(20);
 		textField.setFont(style.getFont());
 		textField.setText(name);
 		textField.setEditable(false);
@@ -39,10 +41,9 @@ public class TopicPanel extends JPanel {
 		Slides.setBounds(185, 84, 89, 23);
 		add(Slides);
 
-		JButton exercise = new JButton("Exercise");
+		exercise = new JButton("Exercise");
 		exercise.setBounds(185, 127, 89, 23);
 		add(exercise);
-		f = (JFrame) SwingUtilities.getRoot(this);
 
 	}
 
@@ -52,7 +53,21 @@ public class TopicPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				JPanel cardLayoutPanel = (JPanel) getParent();
+				JPanel cardLayoutPanel2 = (JPanel) cardLayoutPanel.getParent();
+				CardLayout layout = (CardLayout) cardLayoutPanel2.getLayout();
+				layout.show(cardLayoutPanel2, name);
 			}
 		});
+		exercise.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ExerciseFrame f = new ExerciseFrame();
+				f.setVisible(true);
+			}
+		});
+
 	}
 }

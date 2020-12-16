@@ -2,6 +2,8 @@ package emptyData;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -11,12 +13,18 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JToggleButton;
 import javax.swing.BoxLayout;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 public class MainFrame {
 
 	private JFrame frame;
 	private Style style;
 	private MenuPanel menu;
+	private NavigationPanel nav;
+	private JPanel center;
+	private SlidesPanel slidePanels;
+	private TopicInfo info;
 
 	/**
 	 * Launch the application.
@@ -39,26 +47,64 @@ public class MainFrame {
 	 */
 	public MainFrame() {
 		initialize();
-	
+
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		int x = 0 ;
+		int y = 70;
 		frame = new JFrame();
-	//	frame.setBounds(100, 100, 450, 300);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setTitle("Empty Data");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		Color bck = new Color(163, 26, 255); 
-		style  = new Style(bck, Color.black, new Font("Serif", Font.BOLD, 30) ); 
-		MenuPanel menu = new MenuPanel(style);
-		frame.add(menu, BorderLayout.CENTER);
+
+		Color bck = new Color(0, 128, 255);
+		style = new Style(bck, Color.black, new Font("Serif", Font.BOLD, 30));
+		nav = new NavigationPanel(style, "WELCOME");
+		center = new JPanel(new CardLayout());
+		menu = new MenuPanel(style);
+		 info = new TopicInfo();
+
+		nav.setBounds(300, 0, 600, y);
+		center.setBounds(0, y, 1300, 560);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setBackground(style.getBckColor().darker());
+
+		center.add(menu, "menu");
+		center.add(topicPanel(), "topicPanel");
+
+		frame.getContentPane().add(nav);
+		frame.getContentPane().add(center);
 		menu.initialize();
 		
-	
+		
+		
+		
+		for(int i = 0 ; i < info.getTopics().size(); i ++) {
+			SlidesPanel s = new SlidesPanel(info.getTopics().get(i));
+			center.add(s, info.getTopics().get(i).getName());
+			
+		}
+		
+		
+
 	}
 
+	private JPanel topicPanel() {
+		JPanel all = new JPanel();
+		ArrayList<TopicPanel> panels = new ArrayList<>();
+		
+		for (int i  = 0 ; i < info.getTopics().size(); i ++   ) {
+			panels.add(new TopicPanel(info.getTopics().get(i).name, style));
+		}
+		all.setLayout(new GridLayout((int) (Math.sqrt(panels.size())), (int) Math.sqrt(panels.size())));
+		for (TopicPanel p : panels) {
+			all.add(p);
+			p.initialize();
+		}
+		return all;
+	}
 }
