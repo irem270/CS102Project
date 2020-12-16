@@ -40,7 +40,7 @@ class Scroll extends  JScrollPane {
 	@Override
 	public void paint(Graphics g) {
 		for(int i = 0 ; i < topic.getImg().size(); i ++) {
-			g.drawImage((topic.getImg().get(i)), i*550+ 50  , 50,  500, 400, null);
+			g.drawImage((topic.getImg().get(i)), i*850+ 50  , 50,  800, 400, null);
 		
 		}
 	
@@ -48,7 +48,7 @@ class Scroll extends  JScrollPane {
 	public Scroll() {
 
 		 setMinimumSize(new Dimension(160, 200));
-		 setPreferredSize(new Dimension(topic.getImg().size()*560, 800));
+		 setPreferredSize(new Dimension(topic.getImg().size()*860, 800));
 	}
 }
 }
