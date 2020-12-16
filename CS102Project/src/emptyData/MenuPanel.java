@@ -25,6 +25,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 	 */
 	public MenuPanel(Style style) {
 		this.style = style;
+		setName("menu");
 		setBackground(style.getBckColor());
 				 		 setLayout(null);
 				 

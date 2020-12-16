@@ -1,7 +1,7 @@
 package emptyData;
 
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+
 import javax.swing.JTextField;
 
 import java.awt.CardLayout;
@@ -26,14 +26,16 @@ public class TopicPanel extends JPanel {
 
 		this.name = name;
 		this.style = style;
+
 		setBackground(style.getBckColor().brighter());
 
 		textField = new JTextField();
-		textField.setBackground(new Color(51, 153, 0));
-		textField.setBounds(120, 37, 229, 36);
+		textField.setBackground(new Color(255, 165, 0));
+		textField.setBounds(120, 29, 232, 52);
 		add(textField);
 		textField.setColumns(20);
 		textField.setFont(style.getFont());
+		textField.setHorizontalAlignment(JTextField.CENTER);
 		textField.setText(name);
 		textField.setEditable(false);
 
@@ -70,4 +72,5 @@ public class TopicPanel extends JPanel {
 		});
 
 	}
+
 }
