@@ -7,6 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import exercise.CorrectMistakes;
+import exercise.MultipleChoice;
+import exercise.SortPanel;
+import exercise.TrueFalse;
+
 public class ExerciseFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -37,6 +42,9 @@ public class ExerciseFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		this.add(new SortPanel("Correct mistakes"), BorderLayout.NORTH);
+
+		this.add(new CorrectMistakes(), BorderLayout.CENTER);
 	}
 
 }

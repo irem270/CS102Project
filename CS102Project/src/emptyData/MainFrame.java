@@ -53,12 +53,11 @@ public class MainFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		int x = 0 ;
 		int y = 70;
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setTitle("Empty Data");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		Color bck = new Color(0, 128, 255);
 		style = new Style(bck, Color.black, new Font("Serif", Font.BOLD, 30));
