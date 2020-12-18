@@ -61,11 +61,11 @@ public class MainFrame {
 
 		Color bck = new Color(0, 128, 255);
 		style = new Style(bck, Color.black, new Font("Serif", Font.BOLD, 30));
-		
+
 		center = new JPanel(new CardLayout());
 		nav = new NavigationPanel(style, "WELCOME", center);
 		menu = new MenuPanel(style);
-		 info = new TopicInfo();
+		info = new TopicInfo();
 
 		nav.setBounds(400, 0, 600, y);
 		center.setBounds(0, y, 1300, 560);
@@ -78,17 +78,12 @@ public class MainFrame {
 		frame.getContentPane().add(nav);
 		frame.getContentPane().add(center);
 		menu.initialize();
-		
-		
-		
-		
-		for(int i = 0 ; i < info.getTopics().size(); i ++) {
-			SlidesPanel s = new SlidesPanel(info.getTopics().get(i),style);
+
+		for (int i = 0; i < info.getTopics().size(); i++) {
+			SlidesPanel s = new SlidesPanel(info.getTopics().get(i), style);
 			center.add(s, info.getTopics().get(i).getName());
-			
+
 		}
-		
-		
 
 	}
 
@@ -96,8 +91,8 @@ public class MainFrame {
 		JPanel all = new JPanel();
 		all.setName("topicPanel");
 		ArrayList<TopicPanel> panels = new ArrayList<>();
-		
-		for (int i  = 0 ; i < info.getTopics().size(); i ++   ) {
+
+		for (int i = 0; i < info.getTopics().size(); i++) {
 			panels.add(new TopicPanel(info.getTopics().get(i).name, style));
 		}
 		all.setLayout(new GridLayout((int) (Math.sqrt(panels.size())), (int) Math.sqrt(panels.size())));

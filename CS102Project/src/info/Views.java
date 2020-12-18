@@ -19,5 +19,6 @@ public class Views extends JPanel {
 		if ( views != null)
 			for (Update view : views)
 				 view.update(this);
+		
 	}
 }
