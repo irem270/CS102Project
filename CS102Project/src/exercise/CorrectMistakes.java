@@ -68,7 +68,7 @@ public class CorrectMistakes extends Exercise implements ActionListener {
 		result = new JTextField();
 		result.setText("Answer is: ***** " + "|| Number of Tries:" + numOfTries );
 		result.setOpaque(true);
-		result.setBounds(550, 600, 400, 100);
+		result.setBounds(550, 300, 400, 100);
 		result.setFont(new Font("Serif", Font.BOLD, 25));
 		result.setBackground(Color.white);
 		add(result);
