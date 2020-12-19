@@ -71,6 +71,9 @@ public class NavigationPanel extends JPanel implements ActionListener {
 			else if(current.getName().equals("topicPanel")) {
 				cardLayout.show(panel, "menu");		
 			}
+			else if(current.getName().equals("infoPanel")) {
+				cardLayout.show(panel, "menu");	
+			}
 		}
          
 	}
