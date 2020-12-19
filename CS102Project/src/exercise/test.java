@@ -13,7 +13,7 @@ public class test {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.add(new SortPanel("Correct mistakes"), BorderLayout.NORTH);
 
-		frame.add(new TrueFalse(), BorderLayout.CENTER);
+		frame.add(new CorrectMistakes(), BorderLayout.CENTER);
         frame.setVisible(true);
 	}
 

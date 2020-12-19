@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -67,27 +68,33 @@ public class CorrectMistakes extends Exercise implements ActionListener {
 		result = new JTextField();
 		result.setText("Answer is: ***** " + "|| Number of Tries:" + numOfTries );
 		result.setOpaque(true);
-		result.setBounds(550, 600, 400, 100);
+		result.setBounds(550, 300, 400, 100);
 		result.setFont(new Font("Serif", Font.BOLD, 25));
 		result.setBackground(Color.white);
 		add(result);
+	
 		
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		Compiler c = new Compiler();
 		if(e.getSource() == submit) {
-			if(textArea.getText().equals(rightAns)) {
-				result.setBackground(Color.green);
-				result.setText("Answer is: Right " + "|| Number of Tries:" + numOfTries); 
-			}
-			else {
-				numOfTries++;
+			try {
+				if(c.compile(textArea.getText()).size() == 0) {
+					result.setBackground(Color.green);
+					result.setText("Answer is: Right " + "|| Number of Tries:" + numOfTries); 
+				}
+				else {
+					numOfTries++;
 
-				result.setBackground(Color.red);
-				result.setText("Answer is: Wrong " + "Number of Tries:" + numOfTries);
+					result.setBackground(Color.red);
+					result.setText("Answer is: Wrong " + "Number of Tries:" + numOfTries);
+				}
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			
 		}
