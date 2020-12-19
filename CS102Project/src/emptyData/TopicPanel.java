@@ -40,7 +40,7 @@ public class TopicPanel extends JPanel {
 		textField.setEditable(false);
 
 		Slides = new JButton("Slides");
-		Slides.setBounds(185, 84, 89, 23);
+		Slides.setBounds(185, 92, 89, 23);
 		add(Slides);
 
 		exercise = new JButton("Exercise");

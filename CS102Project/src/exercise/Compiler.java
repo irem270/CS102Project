@@ -57,8 +57,10 @@ public List<String> compile(String code) throws IOException {
         if (diagnostic.getKind() == Diagnostic.Kind.ERROR) {
           errors.add(String.format("Compile error: %s%n", diagnostic.getMessage(Locale.getDefault())));
         }
+ 
       }
     }
+   
     return errors;
   }
 }
