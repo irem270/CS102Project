@@ -30,14 +30,10 @@ public class Compiler {
 			e1.printStackTrace();
 		}
 
-		try {
-			FileWriter myWriter = new FileWriter(myObj);
+		FileWriter myWriter = new FileWriter(myObj);
 
-			myWriter.write(code);
-			myWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		myWriter.write(code);
+		myWriter.close();
 
 		// set up compiler
 		final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
@@ -55,7 +51,8 @@ public class Compiler {
 			// check we don't have any compilation errors
 			for (final Diagnostic<? extends JavaFileObject> diagnostic : diagnostics.getDiagnostics()) {
 				if (diagnostic.getKind() == Diagnostic.Kind.ERROR) {
-					errors.add(String.format("Compile error: %s%n" + " on line : " + diagnostic.getLineNumber(), diagnostic.getMessage(Locale.getDefault())));
+					errors.add(String.format("Compile error: %s%n" + " on line : " + diagnostic.getLineNumber(),
+							diagnostic.getMessage(Locale.getDefault())));
 				}
 
 			}

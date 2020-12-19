@@ -3,6 +3,7 @@ package emptyData;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -43,16 +44,18 @@ public class MainFrame {
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
 	 */
-	public MainFrame() {
+	public MainFrame() throws IOException {
 		initialize();
 
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
 	 */
-	private void initialize() {
+	private void initialize() throws IOException  {
 		int y = 70;
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -66,6 +69,9 @@ public class MainFrame {
 		nav = new NavigationPanel(style, "WELCOME", center);
 		menu = new MenuPanel(style);
 		info = new TopicInfo();
+	
+		InfoPanel ip = new InfoPanel(style);
+	
 
 		nav.setBounds(400, 0, 600, y);
 		center.setBounds(0, y, 1300, 560);
@@ -74,6 +80,7 @@ public class MainFrame {
 
 		center.add(menu, "menu");
 		center.add(topicPanel(), "topicPanel");
+		center.add(ip,"infoPanel");
 
 		frame.getContentPane().add(nav);
 		frame.getContentPane().add(center);
