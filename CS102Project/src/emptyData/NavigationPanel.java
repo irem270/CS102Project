@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class NavigationPanel extends JPanel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JPanel panel;
 
@@ -36,10 +40,6 @@ public class NavigationPanel extends JPanel implements ActionListener {
 		back.setBounds(329, 16, 68, 23);
 		add(back);
 		this.setBackground(style.getBckColor().darker());
-		
-		Stack<JPanel> panels = new Stack<>();
-		
-		
 		back.addActionListener(this);
 
 	}

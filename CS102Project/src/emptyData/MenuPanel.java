@@ -1,20 +1,13 @@
 package emptyData;
 
 import java.awt.CardLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout.Alignment;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import info.Update;
-
-import com.jgoodies.forms.layout.FormSpecs;
 
 public class MenuPanel extends JPanel implements ActionListener {
 	Style style;
@@ -61,5 +54,11 @@ public class MenuPanel extends JPanel implements ActionListener {
 			layout.show(cardLayoutPanel, "infoPanel");
 
 		}
+	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image wp = new ImageIcon(MenuPanel.class.getResource("wall.jpg")).getImage();
+		g.drawImage(wp, 0, 0, 500, 500, null);
+				
 	}
 }
