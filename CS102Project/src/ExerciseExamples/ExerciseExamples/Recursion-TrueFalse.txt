@@ -1,0 +1,22 @@
+Recursion-TrueFalse
+public class SequenceTest {
+
+	public static void main(String[] args) {
+		System.out.println(sequence(4));
+	}
+
+	public int sequence( int N )
+	{
+	  if ( N==1 )
+	  {
+		return 2;
+	  }
+	  else
+	  {
+		return sequence(N) + N*N - 1;  
+	  }
+	}
+}
+
+//Output //False
+28
