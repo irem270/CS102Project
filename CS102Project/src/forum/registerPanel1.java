@@ -1,13 +1,14 @@
+package forum;
 import javax.swing.*;
 
-public class discussionPage extends JFrame{
+public class registerPanel1 extends JFrame{
 
     public static void main(String[] args){
 
-        JFrame frame = new JFrame("Discussion Frame");
+        JFrame frame = new JFrame("Register Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.getContentPane().add(new discussionPanel());
+        frame.getContentPane().add(new RegisterPanel());
         frame.pack();
         frame.setVisible(true);
     }

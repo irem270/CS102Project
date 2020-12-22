@@ -1,3 +1,5 @@
+package forum;
+
 import java.sql.*;
 
 public class deneme {

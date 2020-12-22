@@ -13,6 +13,9 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JToggleButton;
+
+import forum.*;
+
 import javax.swing.BoxLayout;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -44,7 +47,8 @@ public class MainFrame {
 
 	/**
 	 * Create the application.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public MainFrame() throws IOException {
 		initialize();
@@ -53,9 +57,10 @@ public class MainFrame {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
-	private void initialize() throws IOException  {
+	private void initialize() throws IOException {
 		int y = 70;
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -69,18 +74,20 @@ public class MainFrame {
 		nav = new NavigationPanel(style, "WELCOME", center);
 		menu = new MenuPanel(style);
 		info = new TopicInfo();
-	
+		userPanel userPanel = new userPanel();
+		RegisterPanel registerPanel = new RegisterPanel();
 		InfoPanel ip = new InfoPanel(style);
-	
 
 		nav.setBounds(400, 0, 600, y);
 		center.setBounds(0, y, 1300, 560);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBackground(style.getBckColor().darker());
 
+		center.add(userPanel, "userPanel");
+		center.add(registerPanel, "registerPanel");
 		center.add(menu, "menu");
 		center.add(topicPanel(), "topicPanel");
-		center.add(ip,"infoPanel");
+		center.add(ip, "infoPanel");
 
 		frame.getContentPane().add(nav);
 		frame.getContentPane().add(center);

@@ -1,29 +1,31 @@
+package forum;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Operations {
-    public static boolean IsLogIn(String username, String pass,JFrame frame) {
+    public  boolean IsLogIn(String username, String pass) {
         try{
             Connection myConn = MySQLConnection.getConnection();
-            String MySQLQuerry = "SELECT * from users WHERE username = ? AND password = ?";
+            String MySQLQuerry = "SELECT * from users WHERE name = ? AND password = ?";
             PreparedStatement preparedStatement = myConn.prepareStatement(MySQLQuerry);
             preparedStatement.setString(1,username);
             preparedStatement.setString(2,pass);
             ResultSet rs = preparedStatement.executeQuery();
-            System.out.println("Done");
+      
 
             while(rs.next()){
                 LogIn.ID = rs.getInt("id");
-                LogIn.username = rs.getString("username");
-
+                LogIn.name = rs.getString("name");
+     
                 return true;
             }
 
         }
         catch(Exception ex){
-            JOptionPane.showMessageDialog(frame,"Database errors: " + ex.getMessage() );
+//            JOptionPane.showMessageDialog(panel,"Database errors: " + ex.getMessage() );
         }
         return false;
     }
