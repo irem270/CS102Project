@@ -57,8 +57,8 @@ public class MenuPanel extends JPanel implements ActionListener {
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image wp = new ImageIcon(MenuPanel.class.getResource("wall.jpg")).getImage();
-		g.drawImage(wp, 0, 0, 500, 500, null);
+		Image wp = new ImageIcon(MenuPanel.class.getResource("wall_1.jpg")).getImage();
+		g.drawImage(wp, 0, 0, 1500, 700, null);
 				
 	}
 }
