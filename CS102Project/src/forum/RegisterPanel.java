@@ -92,9 +92,11 @@ public class RegisterPanel extends JPanel {
 			Id.setText("");
 
 			if (!isInteger(ID)) {
-				JOptionPane.showMessageDialog(null, "ID and Password must be integer");
+				JOptionPane.showMessageDialog(null, "ID and Password must be integer",  "Inane error",
+					    JOptionPane.ERROR_MESSAGE);
 			} else if (!isInteger(pass1)) {
-				JOptionPane.showMessageDialog(null, "ID and Password must be integer");
+				JOptionPane.showMessageDialog(null, "ID and Password must be integer",  "Inane error",
+					    JOptionPane.ERROR_MESSAGE);
 			} else {
 
 				int id = Integer.parseInt(ID);

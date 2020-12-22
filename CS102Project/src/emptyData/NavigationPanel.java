@@ -5,6 +5,7 @@ import javax.swing.JTextField;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -70,12 +71,13 @@ public class NavigationPanel extends JPanel implements ActionListener {
 		CardLayout cardLayout = (CardLayout) panel.getLayout();
 		Component current = new JPanel();
 		current.setName("");
+		for (Component p : panel.getComponents()) {
+			if (p.isVisible())
+				current = p;
+		}
 
 		if (e.getSource() == back) {
-			for (Component p : panel.getComponents()) {
-				if (p.isVisible())
-					current = p;
-			}
+
 			if (!current.getName().equals("")) {
 				if (topicNames.contains(current.getName()))
 					cardLayout.show(panel, "topicPanel");
@@ -86,7 +88,12 @@ public class NavigationPanel extends JPanel implements ActionListener {
 				}
 			}
 		} else if (e.getSource() == out) {
-			cardLayout.show(panel, "userPanel");
+			if (!(current.getName().equals("userPanel"))) {
+				int n = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "An Inane Question",
+						JOptionPane.YES_NO_OPTION);
+				if (n == JOptionPane.YES_OPTION)
+					cardLayout.show(panel, "userPanel");
+			}
 		}
 
 	}

@@ -74,12 +74,14 @@ public class userPanel extends JPanel implements ActionListener {
 				
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Your username or password is invalid");
+				JOptionPane.showMessageDialog(null, "Your username or password is invalid" , "Inane error",
+					    JOptionPane.ERROR_MESSAGE);
+				
 			}
 			
 
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Please type correct infos...");
+			JOptionPane.showMessageDialog(null, ex.getMessage());
 
 		}
 	}
