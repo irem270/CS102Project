@@ -86,10 +86,16 @@ public class NavigationPanel extends JPanel implements ActionListener {
 				} else if (current.getName().equals("infoPanel")) {
 					cardLayout.show(panel, "menu");
 				}
+				else if(current.getName().equals("registerPanel")) {
+					cardLayout.show(panel, "userPanel");
+				}
+				else if(current.getName().equals("forgotPanel")) {
+					cardLayout.show(panel, "userPanel");
+				}
 			}
 		} else if (e.getSource() == out) {
-			if (!(current.getName().equals("userPanel"))) {
-				int n = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "An Inane Question",
+			if (!(current.getName().equals("userPanel") ||current.getName().equals("registerPanel")||current.getName().equals("forgotPanel") )) {
+				int n = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "A Question",
 						JOptionPane.YES_NO_OPTION);
 				if (n == JOptionPane.YES_OPTION)
 					cardLayout.show(panel, "userPanel");

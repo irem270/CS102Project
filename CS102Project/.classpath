@@ -12,5 +12,7 @@
 	<classpathentry kind="lib" path="C:/Users/virem/Downloads/mysql-connector-java-5.1.49.zip"/>
 	<classpathentry kind="lib" path="C:/Users/virem/Downloads/phpMyAdmin-5.0.4-all-languages.zip"/>
 	<classpathentry kind="lib" path="C:/Users/virem/Downloads/mysql-connector.jar"/>
+	<classpathentry kind="lib" path="C:/Users/virem/Downloads/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/virem/Downloads/activation.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

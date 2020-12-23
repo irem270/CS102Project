@@ -77,6 +77,7 @@ public class MainFrame {
 		userPanel userPanel = new userPanel();
 		RegisterPanel registerPanel = new RegisterPanel();
 		InfoPanel ip = new InfoPanel(style);
+		ForgotPanel forgotPanel = new ForgotPanel();
 
 		nav.setBounds(400, 0, 600, y);
 		center.setBounds(0, y, 1300, 560);
@@ -85,6 +86,7 @@ public class MainFrame {
 
 		center.add(userPanel, "userPanel");
 		center.add(registerPanel, "registerPanel");
+		center.add(forgotPanel, "forgotPanel"); 
 		center.add(menu, "menu");
 		center.add(topicPanel(), "topicPanel");
 		center.add(ip, "infoPanel");

@@ -16,7 +16,7 @@ public class RegisterPanel extends JPanel {
 	Connection conn = null;
 	Statement st = null;
 	static final String driver = "com.mysql.jdbc.Driver";
-	static final String url = "jdbc:mysql://localhost:3306/users?characterEncoding=utf8";
+	static final String url = "jdbc:mysql://localhost:3306/user_info?characterEncoding=utf8";
 
 	static final String user = "root";
 	static final String pass = "271099";
@@ -32,7 +32,7 @@ public class RegisterPanel extends JPanel {
 		nameLabel.setText("name");
 
 		idLabel = new JLabel();
-		idLabel.setText("id");
+		idLabel.setText("e-mail");
 
 		passLabel = new JLabel();
 		passLabel.setText("password");
@@ -84,34 +84,32 @@ public class RegisterPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String name = userName.getText();
-			String ID = Id.getText();
+			String mail = Id.getText();
 			String pass1 = password.getText();
 
 			userName.setText("");
 			password.setText("");
 			Id.setText("");
 
-			if (!isInteger(ID)) {
-				JOptionPane.showMessageDialog(null, "ID and Password must be integer",  "Inane error",
-					    JOptionPane.ERROR_MESSAGE);
-			} else if (!isInteger(pass1)) {
-				JOptionPane.showMessageDialog(null, "ID and Password must be integer",  "Inane error",
-					    JOptionPane.ERROR_MESSAGE);
+			 if (!isInteger(pass1)) {
+				JOptionPane.showMessageDialog(null, "ID and Password must be integer", "Error",
+						JOptionPane.ERROR_MESSAGE);
+			} else if (pass1.length() < 6) {
+				JOptionPane.showMessageDialog(null, "Password is too short", "Error", JOptionPane.ERROR_MESSAGE);
 			} else {
-
-				int id = Integer.parseInt(ID);
+//				int id = Integer.parseInt(ID);
 				int pss = Integer.parseInt(pass1);
 
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
 					Connection conn = DriverManager.getConnection(url, user, pass);
 					Statement st = conn.createStatement();
-					st.executeUpdate("Insert into users " + "(id,name,password)" + "values(" + id + ",'" + name + "',"
-							+ pass1 + ")");
+					st.executeUpdate("Insert into user_info " + "(name,mail,id)" + "values('" + name + "','" + mail + "',"
+							+ pss + ")");
 					JPanel cardLayoutPanel = (JPanel) getParent();
 					CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
 					layout.show(cardLayoutPanel, "menu");
-					JOptionPane.showMessageDialog(null, "Successfully Registered");
+					JOptionPane.showMessageDialog(null, "Successfully Registered. Welcome " + name);
 				} catch (SQLException | ClassNotFoundException ex) {
 					ex.printStackTrace();
 				}

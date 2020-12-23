@@ -1,0 +1,52 @@
+Recursion-MultiCoise
+
+public static boolean isPalindrome(String text)
+{
+	int length = text.length();
+	
+	
+	
+	// Get first and last characters, converted to lowercase.
+	char first = Character.toLowerCase(text.charAt(0));
+	char last = Character.toLowerCase(text.charAt(length - 1));
+		
+	if (Character.isLetter(first) && Character.isLetter(last))
+	{
+		// Both are letters.
+		if (first == last)
+		{
+			// Remove both first and last character.
+			String shorter = text.substring(1, length - 1);
+			return isPalindrome(shorter);
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else if (!Character.isLetter(last))
+	{
+		// Remove last character.
+		String shorter = text.substring(0, length - 1);
+		return isPalindrome(shorter);	
+	}
+	else
+	{
+		// Remove first character.
+		String shorter = text.substring(1);
+		return isPalindrome(shorter);
+	}
+}
+
+A-) It would not work because it does not check if the String text contains numbers or tokens
+
+B-) It works perfectly fine
+
+c-) It would not work because it does not have a base case so it goes infinitly
+
+D-) It would not work because we can't compare two chars with '==' token in java
+
+E-) It would not work because it does not look the string text unless all chars in text are lower case
+
+
+

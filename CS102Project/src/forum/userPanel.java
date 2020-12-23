@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class userPanel extends JPanel implements ActionListener {
 
-	JButton logIn, register;
+	JButton logIn, register, forgot;
 	JLabel inLabel, regLabel;
 	JTextField userName;
 	JPasswordField password;
@@ -34,6 +34,9 @@ public class userPanel extends JPanel implements ActionListener {
 
 		register = new JButton("Register");
 		register.setBounds(166, 127, 149, 51);
+		
+		forgot = new JButton("forgot password? ");
+		forgot.setBounds(166, 127, 149, 51);
 
 		logIn.addActionListener(this);
 
@@ -43,6 +46,18 @@ public class userPanel extends JPanel implements ActionListener {
 		add(password);
 		add(logIn);
 		add(register);
+		add(forgot);
+		
+		forgot.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JPanel cardLayoutPanel = (JPanel) getParent();
+				CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
+				layout.show(cardLayoutPanel, "forgotPanel");
+			}
+		});
 
 		register.addActionListener(new ActionListener() {
 
@@ -74,7 +89,7 @@ public class userPanel extends JPanel implements ActionListener {
 				
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Your username or password is invalid" , "Inane error",
+				JOptionPane.showMessageDialog(null, "Your username or password is invalid" , "An error",
 					    JOptionPane.ERROR_MESSAGE);
 				
 			}

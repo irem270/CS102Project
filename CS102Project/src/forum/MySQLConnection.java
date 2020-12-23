@@ -8,7 +8,7 @@ public class MySQLConnection {
     Connection myConn;
     public static Connection getConnection() throws Exception {
     	Class.forName("com.mysql.jdbc.Driver"); 
-        String url = "jdbc:mysql://localhost:3306/users?characterEncoding=utf8";
+        String url = "jdbc:mysql://localhost:3306/user_info?characterEncoding=utf8";
 
         String user = "root";
         String pass = "271099";
