@@ -86,6 +86,8 @@ public class userPanel extends JPanel implements ActionListener {
 				JPanel cardLayoutPanel = (JPanel) getParent();
 				CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
 				layout.show(cardLayoutPanel, "menu");
+				UserInfo.setName(usernameStr);
+				UserInfo.setPassword(Integer.parseInt(passwordStr));
 				
 			}
 			else {

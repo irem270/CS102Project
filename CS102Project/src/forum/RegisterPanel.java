@@ -110,6 +110,8 @@ public class RegisterPanel extends JPanel {
 					CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
 					layout.show(cardLayoutPanel, "menu");
 					JOptionPane.showMessageDialog(null, "Successfully Registered. Welcome " + name);
+					UserInfo.setName(name);
+					UserInfo.setPassword(pss);
 				} catch (SQLException | ClassNotFoundException ex) {
 					ex.printStackTrace();
 				}

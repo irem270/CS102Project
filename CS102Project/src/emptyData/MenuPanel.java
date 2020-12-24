@@ -9,15 +9,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import forum.Operations;
+
 public class MenuPanel extends JPanel implements ActionListener {
 	Style style;
 	JButton topics;
 	JButton infoButton;
+	JButton  pass;
+	/**
+	 * @wbp.nonvisual location=186,299
+	 */
+
 
 	/**
 	 * Create the panel.
 	 */
 	public MenuPanel(Style style) {
+	
 		this.style = style;
 		setName("menu");
 		setBackground(style.getBckColor());
@@ -33,6 +41,14 @@ public class MenuPanel extends JPanel implements ActionListener {
 		infoButton.setBounds(166, 215, 149, 51);
 		add(infoButton);
 		infoButton.addActionListener(this);
+		
+		
+		pass = new JButton("Update Password");
+		pass.setFont(style.getFont());
+		pass.setFont(null);
+		pass.setBounds(166, 291, 149, 51);
+		add(pass);
+		pass.addActionListener(this);
 
 	}
 
@@ -53,6 +69,10 @@ public class MenuPanel extends JPanel implements ActionListener {
 		} else if (e.getSource() == infoButton) {
 			layout.show(cardLayoutPanel, "infoPanel");
 
+		}
+		else if(e.getSource() == pass) {
+			String str = JOptionPane.showInputDialog("Enter Your New Password : ");
+			Operations.changePassword(Integer.parseInt(str));
 		}
 	}
 	public void paintComponent(Graphics g) {

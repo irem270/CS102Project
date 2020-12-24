@@ -21,51 +21,49 @@ public class ForgotPanel extends JPanel {
 	public ForgotPanel() {
 		this.setName("forgotPanel");
 		setLayout(null);
-		
+
 		enter = new JTextField();
 		enter.setText("enter your email adress");
 		enter.setEditable(false);
 		enter.setBounds(66, 26, 295, 23);
 		add(enter);
 		enter.setColumns(10);
-		
+
 		textField = new JTextField();
 		textField.setBounds(66, 57, 295, 20);
 		add(textField);
 		textField.setColumns(10);
-		
+
 		JButton btnNewButton = new JButton("Enter");
 		btnNewButton.setBounds(160, 88, 89, 23);
 		add(btnNewButton);
-		
-		
-		btnNewButton.addActionListener(new  ActionListener() {
-			
+
+		btnNewButton.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String mail = textField.getText().toString();
 				textField.setText("");
-				if(isValidEmailAddress(mail)) {
-					
-				if(ForgetPassword.sendMail(mail)) {
+				if (isValidEmailAddress(mail)) {
 					JOptionPane.showMessageDialog(null, "Please check your mail box.");
-				}
-				}
-				else {
+
+				} else {
 					JOptionPane.showMessageDialog(null, "Invalid email!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 	}
-	public  boolean isValidEmailAddress(String email) {
-		   boolean result = true;
-		   try {
-		      InternetAddress emailAddr = new InternetAddress(email);
-		      emailAddr.validate();
-		   } catch (AddressException ex) {
-		      result = false;
-		   }
-		   return result;
+
+	public boolean isValidEmailAddress(String email) {
+		boolean result = true;
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (AddressException ex) {
+			result = false;
 		}
+		return result;
+	}
+
 }

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Operations {
 	public boolean IsLogIn(String username, String pass) {
@@ -45,9 +46,31 @@ public class Operations {
 			}
 
 		} catch (Exception ex) {
-             JOptionPane.showMessageDialog(null,"Database errors: " + ex.getMessage() );
+			JOptionPane.showMessageDialog(null, "Database errors: " + ex.getMessage());
 		}
 		return 0;
+	}
+
+	public static boolean changePassword(int password) {
+		Connection con;
+		try {
+			con = (Connection) MySQLConnection.getConnection();
+			String query = "update user_info set id = " + password + " where name = '" + UserInfo.getName() + "'";
+
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			// execute the java preparedstatement
+			preparedStmt.executeUpdate();
+
+			con.close();
+			JOptionPane.showMessageDialog(null, "Password updated successfully.");
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		// create the java mysql update preparedstatement
+
 	}
 
 }
