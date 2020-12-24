@@ -3,7 +3,7 @@ package forum;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
+import javax.swing.JOptionPane;
 
 public class ForgetPassword {
 	final static String myMail = "cs102.emptydata@gmail.com";
@@ -11,6 +11,8 @@ public class ForgetPassword {
 
 	public static boolean sendMail(String email) {
 		Properties props = System.getProperties();
+		int userPass =  Operations.getPassword(email);
+		if(userPass!=0) {
 		String host = "smtp.gmail.com";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
@@ -38,7 +40,7 @@ public class ForgetPassword {
 			}
 
 			message.setSubject("Your EmptyData Password");
-			message.setText("Hello, your EmptyData password is : " +  Operations.getPassword(email));
+			message.setText("Hello, your EmptyData password is : " + userPass);
 			Transport transport = session.getTransport("smtp");
 			transport.connect(host, myMail, pass);
 			transport.sendMessage(message, message.getAllRecipients());
@@ -52,5 +54,11 @@ public class ForgetPassword {
 			return false;
 		}
 	}
+		else {
+			JOptionPane.showMessageDialog(null, "Couldn't find your account!", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+	}
+	
 
 }

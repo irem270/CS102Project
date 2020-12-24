@@ -41,13 +41,13 @@ public class Operations {
 
 				LogIn.mail = rs.getString("mail");
 				LogIn.password = rs.getInt("id");
-
+				return LogIn.password;
 			}
 
 		} catch (Exception ex) {
              JOptionPane.showMessageDialog(null,"Database errors: " + ex.getMessage() );
 		}
-		return LogIn.password;
+		return 0;
 	}
 
 }
