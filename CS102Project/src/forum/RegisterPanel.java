@@ -96,7 +96,11 @@ public class RegisterPanel extends JPanel {
 						JOptionPane.ERROR_MESSAGE);
 			} else if (pass1.length() < 6) {
 				JOptionPane.showMessageDialog(null, "Password is too short", "Error", JOptionPane.ERROR_MESSAGE);
-			} else {
+			} 
+			else if(!Operations.isUnique(name)){
+				JOptionPane.showMessageDialog(null, "Your username is not unique", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 //				int id = Integer.parseInt(ID);
 				int pss = Integer.parseInt(pass1);
 

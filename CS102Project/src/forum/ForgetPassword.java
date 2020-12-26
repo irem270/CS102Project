@@ -12,7 +12,7 @@ public class ForgetPassword {
 	public static boolean sendMail(String email) {
 		Properties props = System.getProperties();
 		int userPass =  Operations.getPassword(email);
-		if(userPass!=0) {
+		if(userPass!=-1) {
 		String host = "smtp.gmail.com";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);

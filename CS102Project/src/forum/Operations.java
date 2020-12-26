@@ -42,13 +42,14 @@ public class Operations {
 
 				LogIn.mail = rs.getString("mail");
 				LogIn.password = rs.getInt("id");
+				System.out.println(LogIn.password);
 				return LogIn.password;
 			}
 
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, "Database errors: " + ex.getMessage());
 		}
-		return 0;
+		return -1;
 	}
 
 	public static boolean changePassword(int password) {
@@ -72,5 +73,25 @@ public class Operations {
 		// create the java mysql update preparedstatement
 
 	}
+
+	public static boolean isUnique(String name) {
+		try {
+			Connection myConn = MySQLConnection.getConnection();
+			String MySQLQuerry = "SELECT * from user_info WHERE name = ?";
+			PreparedStatement preparedStatement = myConn.prepareStatement(MySQLQuerry);
+			preparedStatement.setString(1, name);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				if( rs.getString("name").equals(name))
+					return false;
+			}
+
+		} catch (Exception ex) {
+//            JOptionPane.showMessageDialog(panel,"Database errors: " + ex.getMessage() );
+		}
+		return true;
+	}
+	
 
 }

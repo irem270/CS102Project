@@ -65,5 +65,4 @@ public class ForgotPanel extends JPanel {
 		}
 		return result;
 	}
-
 }

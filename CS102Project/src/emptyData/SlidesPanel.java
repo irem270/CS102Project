@@ -3,6 +3,8 @@ package emptyData;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -10,11 +12,14 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.ScrollPane;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class SlidesPanel extends JScrollPane {
+public class SlidesPanel extends JScrollPane  {
 	private Topic topic;
 	private JTextField textField;
 	private Style style;
+
 
 	/**
 	 * Create the panel.
@@ -60,4 +65,6 @@ public class SlidesPanel extends JScrollPane {
 			setPreferredSize(new Dimension(topic.getImg().size() * 860, 800));
 		}
 	}
+
+
 }
