@@ -1,7 +1,5 @@
 package forum;
 
-import javax.swing.JPanel;
-
 import emptyData.Style;
 import forum.Operations;
 import forum.UserInfo;
@@ -11,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ForumPanel extends JPanel {
@@ -18,6 +17,7 @@ public class ForumPanel extends JPanel {
 	int count = 1;
 	int pageCount = 1;
 	JButton send;
+	private ArrayList<JTextArea> messages;
 	private static JTextArea mess;
 	public static JTextField entry;
 	private Style style;
@@ -28,11 +28,14 @@ public class ForumPanel extends JPanel {
 
 	static final String user = "root";
 	static final String pass = "271099";
+	Messages m;
 
 	public ForumPanel(Style style) {
 
 		this.style = style;
 		this.setName("forumPanel");
+
+		messages = new ArrayList<>();
 
 		send = new JButton("Send");
 		send.setBounds(166, 127, 149, 51);
@@ -50,7 +53,10 @@ public class ForumPanel extends JPanel {
 
 		add(entry);
 		add(send);
-		add(mess);
+//		add(mess);
+
+		m = new Messages();
+		add(m);
 	}
 
 	public class senderActionListener implements ActionListener {
@@ -64,30 +70,28 @@ public class ForumPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(entry.getText().toString().equals("")) {
-				JOptionPane.showMessageDialog(null, "Please write something.." , "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			else {
-			String message = "from : " + UserInfo.getName() + "\n" + entry.getText().toString();
-			entry.setText("");
-			if (messages() > 6) {
-				Operations.createTable();
-				pageCount++;
-				count = 1;
-			}
+			if (entry.getText().toString().equals("")) {
+				JOptionPane.showMessageDialog(null, "Please write something..", "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				String message = "from : " + UserInfo.getName() + "\n" + entry.getText().toString();
+				entry.setText("");
+				if (messages() > 6) {
 
-			try {
-				Connection conn = DriverManager.getConnection(url, user, pass);
-				Statement st = conn.createStatement();
-				st.executeUpdate("Insert into " + Integer.toString(pageCount) + "forum_page (newmessage,date)"
-						+ "values('" + message + "','" + sqlDate + "')");
-				mess.append(sqlDate + "\n" + message);
+				}
 
-			} catch (SQLException ex) {
-				ex.printStackTrace();
+				try {
+					Connection conn = DriverManager.getConnection(url, user, pass);
+					Statement st = conn.createStatement();
+					st.executeUpdate("Insert into " + "1forum_page (newmessage,date)" + "values('" + message + "','"
+							+ sqlDate + "')");
+					mess.append(sqlDate + "\n" + message);
+					m.update(message);
+
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+
 			}
-
-		}
 		}
 	}
 
@@ -110,6 +114,11 @@ public class ForumPanel extends JPanel {
 				builder.append(rs.getString("newmessage"));
 				builder.append("\n");
 				builder.append("\n");
+				JTextArea t = new JTextArea(rs.getString("date") + " \n" + rs.getString("newmessage") );
+				t.setEditable(false);
+				t.setBackground(Color.cyan);
+				t.setSize(300, 30);
+				messages.add(t);
 			}
 			mess.setText(builder.toString());
 			count++;
@@ -118,5 +127,43 @@ public class ForumPanel extends JPanel {
 			JOptionPane.showMessageDialog(null, "Database errors: " + ex.getMessage());
 		}
 		return count;
+	}
+
+	class Messages extends JScrollPane {
+
+		/**
+		 * Create the panel.
+		 */
+		JPanel view;
+
+		public Messages() {
+			
+			GridLayout g = new GridLayout(2*messages.size(), 1);
+			g.setVgap(5);
+			
+			this.getViewport().add(new JPanel(g));
+			this.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+			setPreferredSize(new Dimension(620, 620));
+//			this.getViewport().setLayout(new GridLayout(1,20));
+
+			view = ((JPanel) this.getViewport().getView());
+
+			for (int i = 0; i < messages.size(); i++) {
+//				getViewport().add(messages.get(i));
+				view.add(messages.get(i));
+			}
+		}
+
+		public void update(String message) {
+			JTextArea i = new JTextArea(message);
+			i.setSize(300, 30);
+			i.setEditable(false);
+			i.setBackground(Color.yellow);
+			view.add(i);
+			view.validate();
+
+		}
+
 	}
 }

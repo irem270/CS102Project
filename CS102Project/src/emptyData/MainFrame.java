@@ -92,6 +92,7 @@ public class MainFrame {
 		center.add(menu, "menu");
 		center.add(topicPanel(), "topicPanel");
 		center.add(ip, "infoPanel");
+		
 
 		frame.getContentPane().add(nav);
 		frame.getContentPane().add(center);
