@@ -71,7 +71,7 @@ public class MainFrame {
 		style = new Style(bck, Color.black, new Font("Serif", Font.BOLD, 30));
 
 		center = new JPanel(new CardLayout());
-		nav = new NavigationPanel(style, "WELCOME", center);
+		nav = new NavigationPanel(style, "EmptyData", center);
 		menu = new MenuPanel(style);
 		info = new TopicInfo();
 		userPanel userPanel = new userPanel();

@@ -1,9 +1,10 @@
 package forum;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.CardLayout;
+
 import javax.swing.*;
 
 public class userPanel extends JPanel implements ActionListener {
@@ -12,40 +13,70 @@ public class userPanel extends JPanel implements ActionListener {
 	JLabel inLabel, regLabel;
 	JTextField userName;
 	JPasswordField password;
+	JPanel inputPanel;
 
 	public userPanel() {
 		setName("userPanel");
+		
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setBackground(new Color(0, 128, 255));
+		this.setPreferredSize(new Dimension(500, 250));
+		
+		inputPanel = new JPanel();
+		inputPanel.setBackground(new Color(0, 128, 255));
 
 		inLabel = new JLabel();
-		inLabel.setText("username");
+		inLabel.setFont(new Font("Serif", Font.BOLD, 25));
+		inLabel.setText("Username :");
+		inLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		regLabel = new JLabel();
-		regLabel.setText("Password");
+		regLabel.setFont(new Font("Serif", Font.BOLD, 25));
+		regLabel.setText("Password:");
+		regLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		userName = new JTextField("");
-		userName.setPreferredSize(new Dimension(100, 30));
+		userName.setPreferredSize(new Dimension(150, 30));
 
 		password = new JPasswordField("");
-		password.setPreferredSize(new Dimension(100, 30));
+		password.setPreferredSize(new Dimension(150, 30));
 
 		logIn = new JButton("Log In");
+		logIn.setFont(new Font("Serif", Font.BOLD, 15));
 		logIn.setBounds(166, 127, 149, 51);
+		logIn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		register = new JButton("Register");
+		register.setFont(new Font("Serif", Font.BOLD, 15));
 		register.setBounds(166, 127, 149, 51);
+		register.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		forgot = new JButton("forgot password? ");
+		forgot = new JButton("Forgot password? ");
+		forgot.setFont(new Font("Serif", Font.BOLD, 15));
 		forgot.setBounds(166, 127, 149, 51);
+		forgot.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		logIn.addActionListener(this);
-
-		add(inLabel);
-		add(userName);
-		add(regLabel);
-		add(password);
+		
+		inputPanel.add(inLabel);
+		inputPanel.add(Box.createHorizontalGlue());
+		inputPanel.add(userName);
+		inputPanel.add(Box.createRigidArea(new Dimension(70, 10)));
+		inputPanel.add(regLabel);
+		inputPanel.add(Box.createHorizontalGlue());
+		inputPanel.add(password);
+		
+		add(Box.createRigidArea(new Dimension(100, 60)));
+		add(inputPanel);
+		
+		add(Box.createRigidArea(new Dimension(100, 30)));
 		add(logIn);
+		add(Box.createRigidArea(new Dimension(100, 10)));
 		add(register);
+		add(Box.createRigidArea(new Dimension(100, 10)));
 		add(forgot);
+		add(Box.createRigidArea(new Dimension(100, 150)));
+		
 		
 		forgot.addActionListener(new ActionListener() {
 			
@@ -85,8 +116,6 @@ public class userPanel extends JPanel implements ActionListener {
 				JPanel cardLayoutPanel = (JPanel) getParent();
 				CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
 				layout.show(cardLayoutPanel, "menu");
-				UserInfo.setName(usernameStr);
-				UserInfo.setPassword(Integer.parseInt(passwordStr));
 				
 			}
 			else {

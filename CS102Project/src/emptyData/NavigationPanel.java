@@ -33,7 +33,7 @@ public class NavigationPanel extends JPanel implements ActionListener {
 		this.panel = panel;
 		textField = new JTextField(message);
 		textField.setForeground(new Color(204, 204, 255));
-		textField.setBounds(127, 11, 174, 32);
+		textField.setBounds(127, 11, 181, 43);
 		add(textField);
 		textField.setColumns(10);
 		textField.setEditable(false);

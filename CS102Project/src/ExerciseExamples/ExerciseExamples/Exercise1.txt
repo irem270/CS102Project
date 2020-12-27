@@ -1,5 +1,7 @@
-Inheritance-Code
 
+
+Inheritance-Code
+CorrectMistakes
 //uneditable
 class Person {
 	 

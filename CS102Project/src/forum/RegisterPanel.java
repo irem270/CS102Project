@@ -3,7 +3,7 @@ package forum;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.CardLayout;
+
 import javax.swing.*;
 import java.sql.*;
 
@@ -15,44 +15,76 @@ public class RegisterPanel extends JPanel {
 	JPasswordField password;
 	Connection conn = null;
 	Statement st = null;
+	JPanel nameP, idP, passP;
 	static final String driver = "com.mysql.jdbc.Driver";
 	static final String url = "jdbc:mysql://localhost:3306/user_info?characterEncoding=utf8";
 
 	static final String user = "root";
-	static final String pass = "271099";
+	static final String pass = "21902896";
 
 	public RegisterPanel() {
 		this.setName("registerPanel");
-
-		register = new JButton("Register");
-		register.setBounds(166, 127, 149, 51);
-		register.addActionListener(new registerActionListener());
-
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setBackground(new Color(255, 165, 0));
+		
+		nameP = new JPanel();
+		nameP.setBackground(new Color(255, 165, 0));
+		
 		nameLabel = new JLabel();
-		nameLabel.setText("name");
-
-		idLabel = new JLabel();
-		idLabel.setText("e-mail");
-
-		passLabel = new JLabel();
-		passLabel.setText("password");
-
+		nameLabel.setText("Name:");
+		nameLabel.setFont(new Font("Serif", Font.BOLD, 30));
+		
 		userName = new JTextField("");
-		userName.setPreferredSize(new Dimension(100, 30));
+		userName.setPreferredSize(new Dimension(150, 30));
+		
+		nameP.add(nameLabel);
+		nameP.add(userName);
+		nameP.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		
+		idP = new JPanel();
+		idP.setBackground(new Color(255, 165, 0));
+		
+		idLabel = new JLabel();
+		idLabel.setText("e-Mail:");
+		idLabel.setFont(new Font("Serif", Font.BOLD, 30));
+		
+		Id = new JTextField("");
+		Id.setPreferredSize(new Dimension(150, 30));
+		
+		idP.add(idLabel);
+		idP.add(Id);
+		idP.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		passP = new JPanel();
+		passP.setBackground(new Color(255, 165, 0));
+		
+		passLabel = new JLabel();
+		passLabel.setText("Password:");
+		passLabel.setFont(new Font("Serif", Font.BOLD, 30));
 
 		password = new JPasswordField("");
-		password.setPreferredSize(new Dimension(100, 30));
-
-		Id = new JTextField("");
-		Id.setPreferredSize(new Dimension(100, 30));
-
-		add(nameLabel);
-		add(userName);
-		add(idLabel);
-		add(Id);
-		add(passLabel);
-		add(password);
+		password.setPreferredSize(new Dimension(150, 30));
+		
+		passP.add(passLabel);
+		passP.add(password);
+		passP.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		register = new JButton("Register");
+		register.setBounds(166, 127, 149, 51);
+		register.setFont(new Font("Serif", Font.BOLD, 15));
+		register.setAlignmentX(Component.CENTER_ALIGNMENT);
+		register.addActionListener(new registerActionListener());
+		
+		add(Box.createRigidArea(new Dimension(100, 50)));
+		add(nameP);
+		add(Box.createRigidArea(new Dimension(100, 10)));
+		add(idP);
+		add(Box.createRigidArea(new Dimension(100, 10)));
+		add(passP);
+		add(Box.createRigidArea(new Dimension(100, 20)));
 		add(register);
+		add(Box.createRigidArea(new Dimension(100, 100)));
 	}
 
 	public boolean isInteger(String str) {
@@ -96,11 +128,7 @@ public class RegisterPanel extends JPanel {
 						JOptionPane.ERROR_MESSAGE);
 			} else if (pass1.length() < 6) {
 				JOptionPane.showMessageDialog(null, "Password is too short", "Error", JOptionPane.ERROR_MESSAGE);
-			} 
-			else if(!Operations.isUnique(name)){
-				JOptionPane.showMessageDialog(null, "Your username is not unique", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			else {
+			} else {
 //				int id = Integer.parseInt(ID);
 				int pss = Integer.parseInt(pass1);
 
@@ -114,8 +142,6 @@ public class RegisterPanel extends JPanel {
 					CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
 					layout.show(cardLayoutPanel, "menu");
 					JOptionPane.showMessageDialog(null, "Successfully Registered. Welcome " + name);
-					UserInfo.setName(name);
-					UserInfo.setPassword(pss);
 				} catch (SQLException | ClassNotFoundException ex) {
 					ex.printStackTrace();
 				}

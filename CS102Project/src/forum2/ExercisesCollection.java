@@ -16,7 +16,7 @@ public class ExercisesCollection {
 
     public ExercisesCollection() throws FileNotFoundException {
         str = "C:\\Users\\virem\\git\\CS102Project\\CS102Project\\src\\ExerciseExamples\\ExerciseExamples\\Exercise";
-
+exercise = new Exercise();
     }
 
     public Exercise getExercise(int num) throws FileNotFoundException {
