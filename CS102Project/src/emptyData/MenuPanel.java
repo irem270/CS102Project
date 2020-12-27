@@ -3,18 +3,19 @@ package emptyData;
 import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import forum.Operations;
+import java.awt.Component;
 
 public class MenuPanel extends JPanel implements ActionListener {
 	private JButton topics;
 	private JButton infoButton;
 	private JButton pass;
+	private JButton forum;
 
 	/**
 	 * @wbp.nonvisual location=186,299
@@ -41,9 +42,28 @@ public class MenuPanel extends JPanel implements ActionListener {
 		infoButton.addActionListener(this);
 
 		pass = new JButton("Change Password");
-		pass.setBounds(166, 291, 149, 51);
+		pass.setBounds(166, 387, 149, 51);
 		add(pass);
 		pass.addActionListener(this);
+
+		forum = new JButton("Forum");
+		forum.setBounds(166, 307, 149, 51);
+		forum.setFont(style.getFont());
+		add(forum);
+		forum.addActionListener(this);
+		
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		horizontalStrut.setBounds(166, 177, 143, 38);
+		add(horizontalStrut);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		horizontalStrut_1.setBounds(172, 264, 143, 38);
+		add(horizontalStrut_1);
+		
+		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		horizontalStrut_2.setBounds(172, 349, 143, 38);
+		add(horizontalStrut_2);
+
 
 	}
 
@@ -61,6 +81,9 @@ public class MenuPanel extends JPanel implements ActionListener {
 		if (e.getSource() == topics) {
 
 			layout.show(cardLayoutPanel, "topicPanel");
+		} else if (e.getSource() == forum) {
+			layout.show(cardLayoutPanel, "forumPanel");
+
 		} else if (e.getSource() == infoButton) {
 			layout.show(cardLayoutPanel, "infoPanel");
 
@@ -75,6 +98,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 			else
 				Operations.changePassword(Integer.parseInt(str));
 		}
+
 	}
 
 	public void paintComponent(Graphics g) {

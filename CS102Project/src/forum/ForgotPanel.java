@@ -45,10 +45,16 @@ public class ForgotPanel extends JPanel {
 				// TODO Auto-generated method stub
 				String mail = textField.getText().toString();
 				textField.setText("");
-				if (isValidEmailAddress(mail)) {
+				boolean b =  ForgetPassword.sendMail(mail);
+				if (isValidEmailAddress(mail) && b) {
+					
 					JOptionPane.showMessageDialog(null, "Please check your mail box.");
 
-				} else {
+				} 
+				else if(!b) {
+					JOptionPane.showMessageDialog(null, "Couldn't find your account!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
 					JOptionPane.showMessageDialog(null, "Invalid email!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}

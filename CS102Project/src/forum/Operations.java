@@ -24,7 +24,7 @@ public class Operations {
 			}
 
 		} catch (Exception ex) {
-//            JOptionPane.showMessageDialog(panel,"Database errors: " + ex.getMessage() );
+			JOptionPane.showMessageDialog(null, "Database errors: " + ex.getMessage());
 		}
 		return false;
 	}
@@ -35,14 +35,12 @@ public class Operations {
 			String MySQLQuerry = "SELECT * from user_info WHERE mail = ?";
 			PreparedStatement preparedStatement = myConn.prepareStatement(MySQLQuerry);
 			preparedStatement.setString(1, email);
-
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
 
 				LogIn.mail = rs.getString("mail");
 				LogIn.password = rs.getInt("id");
-				System.out.println(LogIn.password);
 				return LogIn.password;
 			}
 
@@ -83,15 +81,33 @@ public class Operations {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				if( rs.getString("name").equals(name))
+				if (rs.getString("name").equals(name))
 					return false;
 			}
 
 		} catch (Exception ex) {
-//            JOptionPane.showMessageDialog(panel,"Database errors: " + ex.getMessage() );
+			JOptionPane.showMessageDialog(null, "Database errors: " + ex.getMessage());
 		}
 		return true;
 	}
-	
+
+	public static void createTable() {
+		int count = 1;
+		String str = "forum_page";
+		StringBuilder builder = new StringBuilder();
+		builder.append(count);
+		builder.append(str);
+		try {
+			Connection myConn = MySQLConnection.getConnection();
+			// String MySQLQuerry = "CREATE TABLE IF NOT EXISTS " + Integer.toString(count)
+			// + ".forumpage (newmessage varchar(140), date varchar(140))";
+			PreparedStatement create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS " + builder
+					+ " (newmessage VARCHAR(140) NOT NULL, date VARCHAR(140) NOT NULL)");
+			create.executeUpdate();
+			count++;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

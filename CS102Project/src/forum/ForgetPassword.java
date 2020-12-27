@@ -55,7 +55,6 @@ public class ForgetPassword {
 		}
 	}
 		else {
-			JOptionPane.showMessageDialog(null, "Couldn't find your account!", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
