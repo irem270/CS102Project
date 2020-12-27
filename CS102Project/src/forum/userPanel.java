@@ -12,7 +12,6 @@ public class userPanel extends JPanel implements ActionListener {
 	JLabel inLabel, regLabel;
 	JTextField userName;
 	JPasswordField password;
-	registerPanel1 r;
 
 	public userPanel() {
 		setName("userPanel");

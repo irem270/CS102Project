@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class ForumPanel extends JPanel {
 
 		this.style = style;
 		this.setName("forumPanel");
+		this.setBackground(style.getBckColor());
 
 		messages = new ArrayList<>();
 
@@ -41,9 +44,10 @@ public class ForumPanel extends JPanel {
 		send.setBounds(166, 127, 149, 51);
 		send.addActionListener(new senderActionListener());
 
-		entry = new JTextField();
+		entry = new HintTextField("enter you message...");
 		entry.setEditable(true);
 		entry.setPreferredSize(new Dimension(200, 100));
+		entry.setBackground(Color.white);
 
 		mess = new JTextArea();
 		mess.setEditable(false);
@@ -137,11 +141,11 @@ public class ForumPanel extends JPanel {
 		JPanel view;
 
 		public Messages() {
-			
 			GridLayout g = new GridLayout(2*messages.size(), 1);
 			g.setVgap(5);
-			
-			this.getViewport().add(new JPanel(g));
+			JPanel p = new JPanel(g);
+			p.setBackground(style.getBckColor());
+			this.setViewportView(p);
 			this.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 			setPreferredSize(new Dimension(620, 620));
@@ -166,4 +170,36 @@ public class ForumPanel extends JPanel {
 		}
 
 	}
+	class HintTextField extends JTextField implements FocusListener {
+
+		  private final String hint;
+		  private boolean showingHint;
+
+		  public HintTextField(final String hint) {
+		    super(hint);
+		    this.hint = hint;
+		    this.showingHint = true;
+		    super.addFocusListener(this);
+		  }
+
+		  @Override
+		  public void focusGained(FocusEvent e) {
+		    if(this.getText().isEmpty()) {
+		      super.setText("");
+		      showingHint = false;
+		    }
+		  }
+		  @Override
+		  public void focusLost(FocusEvent e) {
+		    if(this.getText().isEmpty()) {
+		      super.setText(hint);
+		      showingHint = true;
+		    }
+		  }
+
+		  @Override
+		  public String getText() {
+		    return showingHint ? "" : super.getText();
+		  }
+		}
 }
