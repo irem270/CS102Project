@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="C:/Users/virem/Downloads/mysql-connector.jar"/>
 	<classpathentry kind="lib" path="C:/Users/virem/Downloads/mail.jar"/>
 	<classpathentry kind="lib" path="C:/Users/virem/Downloads/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/virem/Downloads/company"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
