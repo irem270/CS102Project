@@ -1,16 +1,11 @@
-package forum2;
+package company;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 
 public class TrueFalse extends Exercise implements ActionListener {
@@ -27,6 +22,8 @@ public class TrueFalse extends Exercise implements ActionListener {
     boolean choose;
     String question;
     String answer;
+    JScrollPane scroll1;
+    JScrollPane scroll2;
 
     public TrueFalse(String question, String answer, boolean rightAns) {
 
@@ -39,11 +36,12 @@ public class TrueFalse extends Exercise implements ActionListener {
         setBackground(new Color(255, 165, 0));
 
         textArea = new JTextArea();
-        textArea.setFont(new Font("Serif", Font.BOLD, 20));
-        textArea.setBounds(30, 30, 450, 375);
-        textArea.setText(this.question);
+        textArea.setFont(new Font("Serif", Font.BOLD, 17));
         textArea.setEditable(false);
-        add(textArea);
+        textArea.setText(this.question);
+        scroll1 = new JScrollPane(textArea);
+        scroll1.setBounds(30, 30, 450, 375);
+        add(scroll1);
 
         submit = new JButton("Submit");
         submit.setFont(new Font("Serif", Font.BOLD, 20));
@@ -53,8 +51,8 @@ public class TrueFalse extends Exercise implements ActionListener {
 
         t = new JRadioButton("TRUE");
         f = new JRadioButton("FALSE");
-        t.setFont(new Font("Serif", Font.BOLD, 20));
-        f.setFont(new Font("Serif", Font.BOLD, 20));
+        t.setFont(new Font("Serif", Font.BOLD, 17));
+        f.setFont(new Font("Serif", Font.BOLD, 17));
         t.setBounds(510, 183, 112, 45);
         f.setBounds(510, 135, 112, 45);
         t.addActionListener( new RadioButtonListener() );
@@ -64,18 +62,19 @@ public class TrueFalse extends Exercise implements ActionListener {
 
 
         neededOutput = new JLabel();
-        neededOutput.setBounds(652, 30, 450, 375);
         neededOutput.setBackground(Color.WHITE);
-        neededOutput.setFont(new Font("Serif", Font.BOLD, 15));
+        neededOutput.setFont(new Font("Serif", Font.BOLD, 17));
         neededOutput.setText(this.answer);
         neededOutput.setOpaque(true);
-        add(neededOutput);
+        scroll2 = new JScrollPane(neededOutput);
+        scroll2.setBounds(652, 30, 450, 375);
+        add(scroll2);
 
         result = new JTextField();
         result.setText("Answer is: ***** " + "|| Number of Tries:" + numOfTries );
         result.setOpaque(true);
         result.setBounds(412, 450, 300, 75);
-        result.setFont(new Font("Serif", Font.BOLD, 25));
+        result.setFont(new Font("Serif", Font.BOLD, 17));
         result.setBackground(Color.white);
         add(result);
     }

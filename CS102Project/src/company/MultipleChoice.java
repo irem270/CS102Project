@@ -1,48 +1,49 @@
-package forum2;
+package company;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
+import javax.swing.*;
 
 
 public class MultipleChoice extends Exercise implements ActionListener{
 
-    JLabel question;
+    JTextArea question;
     JRadioButton a, b, c, d, e;
     JButton submit;
     JLabel table;
     boolean choice;
-    String rightAns;
+    JScrollPane scroll;
+    String answer;
 
 
-    public MultipleChoice(String question, String answer, String choices){
+    public MultipleChoice(String question, String answer, String aa,String ab,String ac, String ad, String ae){
         choice = false;
+        this.answer = answer;
 
         setLayout( null );
         setBackground(new Color(255, 165, 0));
 
 
-        this.question = new JLabel();
-        this.question.setBounds(187, 30, 450, 225);
+        this.question = new JTextArea();
         this.question.setBackground(Color.WHITE);
-        this.question.setFont(new Font("Serif", Font.BOLD, 30));
-        this.question.setText("<html>" +  "********** *********** ********* <html> ********* **********" + "</html>");
+        this.question.setFont(new Font("Serif", Font.BOLD, 10));
+        this.question.setText(question);
         this.question.setOpaque(true);
-        add(this.question);
+        scroll = new JScrollPane(this.question);
+        scroll.setBounds(187, 30, 450, 225);
+        add(scroll);
 
 
 
 
-        a = new JRadioButton("<html>" + "A - " + "******************************************" + "</html>");
-        b = new JRadioButton("<html>" + "B - " + "******************************************" + "</html>");
-        c = new JRadioButton("<html>" + "C - " + "******************************************" + "</html>");
-        d = new JRadioButton("<html>" + "D - " + "******************************************" + "</html>");
-        e = new JRadioButton("<html>" + "E - " + "******************************************" + "</html>");
+        this.a = new JRadioButton("<html>"  + aa + "</html>");
+        this.b = new JRadioButton("<html>"  + ab + "</html>");
+        this.c = new JRadioButton("<html>"  + ac + "</html>");
+        this.d = new JRadioButton("<html>"  + ad + "</html>");
+        this.e = new JRadioButton("<html>"  + ae + "</html>");
         a.setFont(new Font("Serif", Font.BOLD, 20));
         b.setFont(new Font("Serif", Font.BOLD, 20));
         c.setFont(new Font("Serif", Font.BOLD, 20));
@@ -53,7 +54,7 @@ public class MultipleChoice extends Exercise implements ActionListener{
         c.addActionListener( new RadioButtonListener() );
         d.addActionListener( new RadioButtonListener() );
         e.addActionListener( new RadioButtonListener() );
-        a.setBounds(187, 28, 450, 45);
+        a.setBounds(187, 284, 450, 45);
         b.setBounds(187, 333, 450, 45);
         c.setBounds(187, 382, 450, 45);
         d.setBounds(187, 431, 450, 45);
@@ -94,7 +95,10 @@ public class MultipleChoice extends Exercise implements ActionListener{
                 c.setSelected(false);
                 d.setSelected(false);
                 e.setSelected(false);
-                choice = true;
+                if(answer.equals("A"))
+                    choice = true;
+                else
+                    choice = false;
             }
 
             else if(ev.getSource() == b ) {
@@ -102,28 +106,40 @@ public class MultipleChoice extends Exercise implements ActionListener{
                 c.setSelected(false);
                 d.setSelected(false);
                 e.setSelected(false);
-                choice = false;
+                if(answer.equals("B"))
+                    choice = true;
+                else
+                    choice = false;
             }
             else if(ev.getSource() == c ) {
                 a.setSelected(false);
                 b.setSelected(false);
                 d.setSelected(false);
                 e.setSelected(false);
-                choice = false;
+                if(answer.equals("C"))
+                    choice = true;
+                else
+                    choice = false;
             }
             else if(ev.getSource() == d ) {
                 b.setSelected(false);
                 c.setSelected(false);
                 a.setSelected(false);
                 e.setSelected(false);
-                choice = false;
+                if(answer.equals("D"))
+                    choice = true;
+                else
+                    choice = false;
             }
             else {
                 b.setSelected(false);
                 c.setSelected(false);
                 d.setSelected(false);
                 a.setSelected(false);
-                choice = false;
+                if(answer.equals("E"))
+                    choice = true;
+                else
+                    choice = false;
             }
         }
 

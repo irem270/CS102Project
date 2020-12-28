@@ -20,7 +20,7 @@ public class RegisterPanel extends JPanel {
 	static final String url = "jdbc:mysql://localhost:3306/user_info?characterEncoding=utf8";
 
 	static final String user = "root";
-	static final String pass = "21902896";
+	static final String pass = "271099";
 
 	public RegisterPanel() {
 		this.setName("registerPanel");
@@ -129,8 +129,10 @@ public class RegisterPanel extends JPanel {
 			} else if (pass1.length() < 6) {
 				JOptionPane.showMessageDialog(null, "Password is too short", "Error", JOptionPane.ERROR_MESSAGE);
 			} else {
-//				int id = Integer.parseInt(ID);
 				int pss = Integer.parseInt(pass1);
+				
+				UserInfo.setName(name);
+				UserInfo.setPassword(pss);
 
 				try {
 					Class.forName("com.mysql.jdbc.Driver");

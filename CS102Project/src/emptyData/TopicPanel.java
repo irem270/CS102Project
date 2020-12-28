@@ -7,10 +7,12 @@ import javax.swing.JTextField;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.Color;
+import company.*;
 
 public class TopicPanel extends JPanel {
 	private JTextField textField;
@@ -66,8 +68,14 @@ public class TopicPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ExerciseFrame f = new ExerciseFrame();
-				f.setVisible(true);
+				try {
+					Main f = new Main(name);
+					f.setVisible(true);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 		});
 

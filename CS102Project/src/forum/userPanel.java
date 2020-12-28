@@ -116,7 +116,8 @@ public class userPanel extends JPanel implements ActionListener {
 				JPanel cardLayoutPanel = (JPanel) getParent();
 				CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
 				layout.show(cardLayoutPanel, "menu");
-				
+				UserInfo.setName(usernameStr);
+				UserInfo.setPassword(Integer.parseInt(passwordStr));
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Your username or password is invalid" , "An error",

@@ -1,4 +1,4 @@
-package forum2;
+package company;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
