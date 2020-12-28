@@ -1,0 +1,19 @@
+
+CS102 Project
+G2E
+EmptyData
+
+
+a)  This project has 3 main aspects. 1)users can study CS102 topics. 2)Exercise page is available for users to practice. 3)forum page to discuss and share ideas.
+However, it does not have animations.  
+
+b) Group Members 
+**Vesile Ýrem Aydýn: all emtyData package, forgot password, some parts of login register and forum , topics, menu and slides.
+**Furkan Kerim Çabaþ: MySQL  connection, login-register-forum, slide images
+**ZeynepDerinDedeler: GUI design, prepared exercises
+**Aykhan Ahmazada: all Exercise classes and their design    
+
+c)  details of the software used:
+-mysql-connector.jar --MySQL connection
+-mail.jar and activation.jar for sending email
+-bsh-2.0b4.jar to interpret code
